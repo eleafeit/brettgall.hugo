@@ -2,3 +2,6 @@ public/
 .idea/
 .Rproj.user
 .Rhistory
+view.sh
+update_academic.sh
+

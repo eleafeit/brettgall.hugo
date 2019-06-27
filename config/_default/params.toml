@@ -9,7 +9,7 @@ day_night = false
 
 # Font style.
 #   Choose from `default`, `classic`, `default_revamp` or `playfair`.
-font = "default_revamp"
+font = "default"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
 description = "Brett J. Gall, Social Scientist and Ph.D. Candidate at Duke University."
