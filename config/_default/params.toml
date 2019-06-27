@@ -12,7 +12,7 @@ day_night = false
 font = "default_revamp"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "Brett J. Gall, Social Scientist and Ph.D. Candidate at Duke University."
+description = "Website of Brett J. Gall, Social Scientist and Ph.D. Candidate at Duke University."
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
 sharing_image = "sharing_img.jpg"
@@ -68,6 +68,7 @@ appointment_url = ""
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
   {icon = "twitter", icon_pack = "fab", name = "@brettjgall", link = "https://twitter.com/brettjgall"},
+  {icon = "linkedin", icon_pack = "fab", name = "LinkedIn", link = "https://www.linkedin.com/in/brettgall/"},
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
@@ -163,3 +164,7 @@ sharing = true
     api_key = ""
     index_name = ""
     show_logo = false
+
+
+  [params]
+  footer = false
