@@ -28,10 +28,9 @@
   url = "rsrcs/"
   weight = 50
 
-
 [[main]]
   name = "Blog"
-  url = "blog/"
+  url = "post/"
   weight = 60
 
 [[main]]
