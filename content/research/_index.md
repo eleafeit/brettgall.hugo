@@ -12,9 +12,9 @@ type: "blank"
 
 ## Working Papers / In-Progress <br>
 
-1. “Policy Preferences, Concept Creep, and The Meaning of Poverty”
-2. “Need, Deservingness, and the Politics of Health Care”
-3. “Learning About Equality of Opportunity in an Unequal World”
-4. “Second-order Fairness Perceptions and Political Inequality”
-5. “Decision Rules, Not Data Quality: Complex Preferences, Survey Satisfycing, and The Effects of Conjoint Experimental Design”
-6. “Bayesian Latent Eﬀects Models for Choice Experiment""
+1. Policy Preferences, Concept Creep, and The Meaning of Poverty
+2. Need, Deservingness, and the Politics of Health Care
+3. Learning About Equality of Opportunity in an Unequal World
+4. Second-order Fairness Perceptions and Political Inequality
+5. Decision Rules, Not Data Quality: The Effect of Conjoint Experimental Design on Attribute Interactions
+6. Bayesian Latent Eﬀects Models for Choice Experiment
