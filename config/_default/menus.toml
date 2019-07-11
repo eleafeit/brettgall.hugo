@@ -23,10 +23,10 @@
   url = "teaching/"
   weight = 40
 
-[[main]]
-  name = "Resources"
-  url = "rsrcs/"
-  weight = 50
+#[[main]]
+#  name = "Resources"
+#  url = "rsrcs/"
+#  weight = 50
 
 [[main]]
   name = "Blog"
