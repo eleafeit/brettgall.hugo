@@ -4,7 +4,7 @@ summary: "An overview of academic and policy publications and research."
 type: "blank"  
 ---
 
-## Publications <br>
+## Publications
 
 2. Wibbels, Erik, Heather Huntington, Brett J. Gall, and Elaine Denny. Endline Impact Evaluation: Ghana Strengthening Accountability Mechanisms (GSAM). United States Agency for International Development. 2018.
 
