@@ -13,10 +13,9 @@ tags:
   - Programming
   - R
   - MikTex
+  - IDE
   - Sweave
 ---
-
-## Dynamic Documents in RStudio
 
 RStudio is a popular, well-supported IDE for R programmers. While a number of text editors with steep learning curves and direct interaction with command line may offer more power and flexibility, RStudio facilitates completion of common tasks with minimal investment.
 
@@ -30,6 +29,6 @@ The instructions for installation are pretty straightforward and found via the l
 
 A few quick tips and links to resources in case you suddenly find anything broken. These are as much for my own future reference as they are resources for others:
 
-- Download a .tex editor (e.g. [TexStudio](https://www.texstudio.org/)) and try to build a simple file in the editor. If it compiles, that means it's an issue with RStudio and not your TeX distribution. You can also check this from the [command line](https://tex.stackexchange.com/questions/132704/how-to-build-knitr-document-from-the-command-line). If you fail to build, make sure you not only have a distribution installed, but that you also have the packages you need installed or have enabled on-the-fly installation of packages. Some TeX distributions have accompanying graphical interfaces for package management while others may be most convenintly used via R or the command line.
+- Download a .tex editor (e.g. [TexStudio](https://www.texstudio.org/)) and try to build a simple file in the editor. If it compiles, that means it's an issue with RStudio and not your TeX distribution. You can also check this from the [command line](https://tex.stackexchange.com/questions/132704/how-to-build-knitr-document-from-the-command-line). If you fail to build, make sure you not only have a distribution installed, but that you also have the packages you need installed or have enabled on-the-fly installation of packages. Some TeX distributions have accompanying graphical interfaces for package management while others may be most conveniently used via R or the command line.
 - If you have no issues compiling outside of RStudio, check you have the correct working directory. Maybe you can't build because you are in the incorrect directory.
-- The most common issue following updates is that RStudio fails to detect the updated TeX installation or is directed at an old installation path. Old installs - even uninstalled - can linger around for various reasons and you may also experience problems if you have multiple TeX distirubtions (e.g. different versions). This typically leads to RStudio failing to find the programs/packages it needs. If this happens (often you'll see "exit code 1" in the error message), follow [these steps](https://tex.stackexchange.com/questions/429706/rstudio-not-detecting-miktex). 
+- The most common issue following updates is that RStudio fails to detect the updated TeX installation or is directed at an old installation path. Old installs - even uninstalled - can linger around for various reasons and you may also experience problems if you have multiple TeX distributions (e.g. different versions). This typically leads to RStudio failing to find the programs/packages it needs. If this happens (often you'll see "exit code 1" in the error message), follow [these steps](https://tex.stackexchange.com/questions/429706/rstudio-not-detecting-miktex). 
