@@ -25,7 +25,7 @@ projects: []
 
 As a course instructor and teaching assistant, I aspire to not only help students master course concepts and tools, but more generally train my students to become critical thinkers capable of clearly and effectively articulating well-reasoned and empirically-supported arguments regarding scientific matters. In particular, I commonly aim to impart students with a clear idea of how to develop an argument, translate that argument into a journal-style document, and potentially port that document to other forms of communication, such as op-eds, presentations, or blog posts.
 
-Many universities provide resourcs to help the independently-motivated students. For example, universities commonly offer writing centers to asssist students with their writing. However, I have found few students use their writing center and many of the documents available from these centers are too long and/or do not offer concrete tips for improvement.
+Many universities provide resources to help independently-motivated students. For example, universities commonly offer writing centers to assist students with their writing. However, I have found few students use their writing center and many of the documents available from these centers are too long and/or do not offer concrete tips for improvement.
 
 In light of this, I put together a brief document containing some practical tips for students writing reading responses and scientifically-oriented class papers. Since this document has saved me a lot of time e-mailing and meeting, I wanted to share it with others with the hopes that they too will benefit from it. 
 
