@@ -4,9 +4,8 @@ author: Brett J. Gall
 date: '2019-08-08'
 slug: common-mistakes-in-writing
 categories:
-  - teaching
-  - writing
-  - tips
+  - Teaching
+  - Writing
 tags:
   - writing
   - tips

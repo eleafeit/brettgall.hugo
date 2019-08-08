@@ -2,7 +2,7 @@
 title: The Conditional Missingness of Missing Values in R
 author: Brett J. Gall
 date: '2019-07-11'
-slug: demonstrating-the-idiosyncratic-behavior-of-na-values-in-r
+slug: missing-values-in-r
 categories:
   - Programming
 tags:
