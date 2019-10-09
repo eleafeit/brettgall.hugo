@@ -1,0 +1,26 @@
+---
+title: Example Post for Claass
+author: Brett J. Gall
+date: '2019-08-08'
+slug: example
+categories:
+  - Teaching
+  - Writing
+tags:
+  - writing
+  - tips
+  - teaching
+  - pedagogy
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-08-8T17:59:44-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Example
