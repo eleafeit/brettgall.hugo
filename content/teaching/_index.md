@@ -16,4 +16,4 @@ type: "blank"
 
 ### Workshops and Trainings (instructor)
 
-- Tools for Transparent, Reproducible, and Efficient Science (Fall 2017, [slides](https://osf.io/4q9k6/))
+- Tools for Transparent, Reproducible, and Efficient Science (Fall 2017, Fall 2019 [slides](https://osf.io/4q9k6/))
