@@ -1,6 +1,6 @@
 ---
 # Display name
-name: Nelson Bighetti
+name: Brett J. Gall
 
 # Username (this should match the folder name)
 authors:
@@ -10,51 +10,44 @@ authors:
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: PhD Candidate
 
 # Organizations/Affiliations
 organizations:
-- name: Stanford University
-  url: ""
+- name: Duke University
+  url: "https://polisci.duke.edu/"
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: 
 
-interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+#interests:
+#- Artificial Intelligence
 
-education:
-  courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+#education:
+#  courses:
+#  - course: PhD in Artificial Intelligence
+#    institution: Stanford University
+#    year: 2012
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
-social:
-- icon: envelope
-  icon_pack: fas
-  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/GeorgeCushen
-- icon: google-scholar
-  icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
-- icon: github
-  icon_pack: fab
-  link: https://github.com/gcushen
-# Link to a PDF of your resume/CV from the About widget.
+
+#social:
+#- icon: envelope
+#  icon_pack: fas
+#  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
+#- icon: twitter
+#  icon_pack: fab
+#  link: https://twitter.com/GeorgeCushen
+#- icon: google-scholar
+#  icon_pack: ai
+#  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+#- icon: github
+#  icon_pack: fab
+#  link: https://github.com/gcushen
+## Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.  
 # - icon: cv
 #   icon_pack: ai
@@ -70,6 +63,12 @@ user_groups:
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+I am a PhD candidate specializing in Political Behavior and Methodology in the [Department of Political Science](https://polisci.duke.edu/) at Duke University. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+I employ quantitative methods to answer questions at the intersection of political economy and political behavior, particularly those related to taxation and redistribution, economic and political inequality, and preference and belief formation.
+
+During the 2019-2020 academic year, I am Program for Advanced Research in the Social Sciences (PARISS) Fellow with the [Social Science Research Institute](https://ssri.duke.edu/) and Humane Studies Fellow with the [Institute for Humane Studies](https://theihs.org/). As a proponent of transparency, reproducibility, and accessibility in the social sciences, I also serve as a Catalyst for the [Berkeley Initiative for Transparency in the Social Sciences](https://www.bitss.org/).
+
+I have taught or assisted in teaching courses in American Politics and Comparative Politics, primarily on topics in political behavior and political economy. Additionally, I have developed and taught workshops on transparent, reproducible, and accessible research for graduate students and provide methodological assistance to students, faculty, and university-affilitated researchers as a PARISS Fellow.
+
+In addition to my academic work, I consult and conduct research for governments and NGOs, primarily in the areas of economic development and governance. Both independently and as an affiliated researcher of the [DevLab@Duke](https://www.devlabduke.com/), I have contributed to the work of organizations including the [U.K. Department for Innovation, Business & Skills](https://www.gov.uk/government/organisations/department-for-business-innovation-skills), [Social Impact](https://socialimpact.com/), [RTI International](https://www.rti.org/), and [AidData](https://www.aiddata.org/). I also contribute to the interdisciplinary work of the [Worldview Lab](https://kenan.ethics.duke.edu/attitudes/students/worldview-lab/) at Duke University.
