@@ -1,6 +1,6 @@
 ---
 # Display name
-name: Brett J. Gall
+name: Elea McDonnell Feit
 
 # Username (this should match the folder name)
 authors:
@@ -10,18 +10,21 @@ authors:
 superuser: true
 
 # Role/position
-role: PhD Candidate
+role: Assistant Professor
 
 # Organizations/Affiliations
 organizations:
-- name: Duke University
-  url: "https://polisci.duke.edu/"
+- name: Drexel University
+  url: "https://www.lebow.drexel.edu"
 
 # Short bio (displayed in user profile at end of posts)
 bio: 
 
 #interests:
-#- Artificial Intelligence
+#- Marketing Experiments
+#- Choice Modeling
+#- Bayesian Inference
+#- Data Fusion
 
 #education:
 #  courses:
@@ -63,12 +66,8 @@ user_groups:
 - Visitors
 ---
 
-I am a PhD candidate specializing in Political Behavior and Methodology in the [Department of Political Science](https://polisci.duke.edu/) at Duke University. 
+I develop data analyis methods to inform core marketing decisions including planning advertising campaigns and designing new products. Recently, I've focused on the design and analysis of randomized marketing experiments, which can be used to measure advertising incrementality. I've also published research on choice modeling and data fusion. Methodologically, I am Bayesian with skills in MCMC sampling, hierarchical models, missing data and decision theory.  
 
-I employ quantitative methods to answer questions at the intersection of political economy and political behavior, particularly those related to taxation and redistribution, economic and political inequality, and preference and belief formation.
+I've spent most of my career in the space between academica and industry, first as a research scientist at General Motors Labs, then as a methodologist at The Modellers and most recently as the as the Executive Director of Wharton Customer Analytics. My favorite question to ask anyone working in marketing analytics is, "What aspect of your customers' experiences with your company would you like to understand better?"
 
-During the 2019-2020 academic year, I am Program for Advanced Research in the Social Sciences (PARISS) Fellow with the [Social Science Research Institute](https://ssri.duke.edu/) and Humane Studies Fellow with the [Institute for Humane Studies](https://theihs.org/). As a proponent of transparency, reproducibility, and accessibility in the social sciences, I also serve as a Catalyst for the [Berkeley Initiative for Transparency in the Social Sciences](https://www.bitss.org/).
-
-I have taught or assisted in teaching courses in American Politics and Comparative Politics, primarily on topics in political behavior and political economy. Additionally, I have developed and taught workshops on transparent, reproducible, and accessible research for graduate students and provide methodological assistance to students, faculty, and university-affilitated researchers as a PARISS Fellow.
-
-In addition to my academic work, I consult and conduct research for governments and NGOs, primarily in the areas of economic development and governance. Both independently and as an affiliated researcher of the [DevLab@Duke](https://www.devlabduke.com/), I have contributed to the work of organizations including the [U.K. Department for Innovation, Business & Skills](https://www.gov.uk/government/organisations/department-for-business-innovation-skills), [Social Impact](https://socialimpact.com/), [RTI International](https://www.rti.org/), and [AidData](https://www.aiddata.org/). I also contribute to the interdisciplinary work of the [Worldview Lab](https://kenan.ethics.duke.edu/attitudes/students/worldview-lab/) at Duke University.
+I enjoy teaching marketing analytics at all levels and have developed courses at Drexel in data-driven digital marketing (undergraduate), marketing experiments (masters), and Bayesian and causal inference (PhD). I have also developed several [workshops and online courses](/teaching) on marketing analytics. I also wrote [R for Marketing Research and Analytics](http://r-marketing.r-forge.r-project.org/) with [Chris Chapman](https://research.google/people/ChrisChapman/), which has been translated to Chinese, Japanese and Korean andadapted to Python. 

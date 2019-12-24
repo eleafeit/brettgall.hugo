@@ -10,8 +10,8 @@
 
 [[main]]
   name = "CV"
-  url = "https://www.dropbox.com/s/31zyj9tcn86n785/gall_cv.pdf?dl=0"
-  weight = 20
+  url = "https://drive.google.com/file/d/0B0EzanlzLNsWRWQ4WjRRTHFoOFU/view?usp=sharing"
+  weight = 70
 
 [[main]]
   name = "Research"
@@ -19,7 +19,7 @@
   weight = 30
 
 [[main]]
-  name = "Teaching"
+  name = "Tutorials"
   url = "teaching/"
   weight = 40
 
@@ -36,4 +36,4 @@
 [[main]]
   name = "Contact"
   url = "contact/"
-  weight = 70
+  weight = 80
