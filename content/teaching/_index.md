@@ -1,5 +1,5 @@
 ---
-title: "Tutorial Materials"  # Add a page title.
+title: "Tutorials & Online Courses"  # Add a page title.
 summary: "Teaching and workshop materials developed by Elea Feit"  # Add a page description.
 type: "blank"  
 ---

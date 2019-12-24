@@ -3,16 +3,16 @@
 
 # Color theme.
 #   Choose from `default`, `ocean`, `forest`, `dark`, `apogee`, `1950s`, `coffee`, `cupcake`, `strawberry`.
-color_theme = "default"
+color_theme = "emf_theme"
 # Enable users to switch between day and night mode?
 day_night = false
 
 # Font style.
 #   Choose from `default`, `classic`, `default_revamp` or `playfair`.
-font = "default_revamp"
+font = "default"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "Website of Elea McDonnell Feit, Assistant Professor of Marketing at Drexel University."
+description = "Elea McDonnell Feit, Assistant Professor of Marketing at Drexel University."
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
 sharing_image = "sharing_img.jpg"

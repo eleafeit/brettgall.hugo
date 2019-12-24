@@ -30,9 +30,9 @@ Han, Feit and Srinivasan (2019) Can Negative Buzz Increase Purchase Intent?, *Ma
 
 Helveston, Feit and Michalek (2018) Pooling Stated and Revealed Preferences in the Presence of RP Endogeneity, *Transportation Research Part B: Methodological* [[TRB](https://doi.org/10.1016/j.trb.2018.01.010)]
 
-Zantedeschi, Feit and Bradlow (2017) Measuring Multi-Channel Advertising Response, *Management Science* [[MS](https://doi.org/10.1287/mnsc.2016.2451)] 
+Zantedeschi, Feit and Bradlow (2017) Measuring Multi-Channel Advertising Response, *Management Science* [[MS](https://doi.org/10.1287/mnsc.2016.2451)] [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2720615)]
 
-Dotson, Fan, Feit,  Oldham, and Yeh (2017) Brand Attitudes and Search Engine Queries, *Journal of Interactive Marketing*   [[JIM](https://doi.org/10.1016/j.intmar.2016.10.002)]
+Dotson, Fan, Feit,  Oldham, and Yeh (2017) Brand Attitudes and Search Engine Queries, *Journal of Interactive Marketing*   [[JIM](https://doi.org/10.1016/j.intmar.2016.10.002)] [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2886055)]
 
 Haaf, Morrow, Azevedo, Feit and  Michalek (2016) Forecasting light-duty vehicle demand using alternative-specific constants for endogeneity correction versus calibration, *Transportation Research Part B: Methodological* [[TRB](https://doi.org/10.1016/j.trb.2015.11.012)]
 
@@ -40,7 +40,7 @@ Helveston, Liu, Feit, Fuchs, Klampfl and Michalek, (2015) Will Subsidies Drive E
 
 Feit, Wang, Bradlow and Fader (2013) Fusing Aggregate and Disaggregate Data with an Application to Multi-Platform Media Consumption, *Journal of Marketing Research* [[JMR](https://doi.org/10.1509/jmr.11.0431)]
 
-Feit, E.M., M.A. Beltramo, and F.M. Feinberg (2010) Reality Check: Combining survey and market data to estimate choice models, *Management Science*  [[MS](https://doi.org/10.1287/mnsc.1090.1136)]
+Feit, Beltramo, and Feinberg (2010) Reality Check: Combining survey and market data to estimate choice models, *Management Science*  [[MS](https://doi.org/10.1287/mnsc.1090.1136)]
 
 Netzer, Olivier, et al. (2008) Beyond Conjoint Analysis: Advances in Preference Measurement, *Marketing Letters* [[MKLET](https://doi.org/10.1007/s11002-008-9046-1)]
 
@@ -49,17 +49,17 @@ Feit and Bradlow (2019) Fusion Models in Fusion Models in Homburg, Klarmann and 
 
 Feit, Feinberg and Lenk (2017) Bayesian Analysis in Leeflang, Wieringa, Bijmolt and Pauwels, *Advanced Methods for Modeling Markets* [[Springer](https://doi.org/10.1007/978-3-319-53469-5)]
 
-Stahl, Valli andFeit (2017) Field Experiments in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research* [[Springer](https://doi.org/10.1007/978-3-319-05542-8_3-1)]
+Stahl, Valli and Feit (2017) Field Experiments in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research* [[Springer](https://doi.org/10.1007/978-3-319-05542-8_3-1)]
 
-Christian, Feit and Beltramo (2007, 2011) Expert Feature: Conjoint Analysis at General Motors in Feinberg, Kinnear and Taylor, *Modern Marketing Research: Methods and Cases*
+Christian, Feit and Beltramo (2007, 2011) Expert Feature: Conjoint Analysis at General Motors in Feinberg, Kinnear and Taylor, *Modern Marketing Research: Methods and Cases* [[Centgage](https://www.cengage.com/c/modern-marketing-research-concepts-methods-and-cases-2e-feinberg/9781133188964/)]
 
-Feit, Pensig and Harper (2011) Expert Feature: Customer Analytics in Feinberg, Kinnear and Taylor, *Modern Marketing Research: Methods and Cases*
+Feit, Pensig and Harper (2011) Expert Feature: Customer Analytics in Feinberg, Kinnear and Taylor, *Modern Marketing Research: Methods and Cases* [[Centgage](https://www.cengage.com/c/modern-marketing-research-concepts-methods-and-cases-2e-feinberg/9781133188964/)]
 
-Barr, Dokko and Feit (2012), Preferences for Plastic, in Barr, *No Slack* [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1810082)]
+Barr, Dokko and Feit (2012), Preferences for Plastic, in Barr, *No Slack* [[Brookings]()] [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1810082)]
 
 
 ## Books
-Chapman and Feit (2015, 2019) *R for Marketing Research and Analytics* [Springer](https://doi.org/10.1007/978-3-319-14436-8) [book website](http://r-marketing.r-forge.r-project.org/)
+Chapman and Feit (2015, 2019) *R for Marketing Research and Analytics* [[Springer](https://doi.org/10.1007/978-3-319-14436-8)] [[authors' website](http://r-marketing.r-forge.r-project.org/)]
 
 Schwartz, Chapman and Feit (2020) *Python for Marketing Research and Analytics*
 
