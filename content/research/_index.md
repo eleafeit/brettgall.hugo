@@ -1,6 +1,6 @@
 ---
-title: "Publications"  # Add a page title.
-summary: ""
+title: "Research"  # Add a page title.
+summary: "Publications written by Elea Feit."
 type: "blank"  
 ---
 
@@ -45,7 +45,7 @@ Feit, Beltramo, and Feinberg (2010) Reality Check: Combining survey and market d
 Netzer, Olivier, et al. (2008) Beyond Conjoint Analysis: Advances in Preference Measurement, *Marketing Letters* [[MKLET](https://doi.org/10.1007/s11002-008-9046-1)]
 
 ## Chapters
-Feit and Bradlow (2019) Fusion Models in Fusion Models in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research*  [[Springer](https://doi.org/10.1007/978-3-319-05542-8_9-1)] [[code](https://github.com/eleafeit/data_fusion)]
+Feit and Bradlow (2019) Fusion Models in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research*  [[Springer](https://doi.org/10.1007/978-3-319-05542-8_9-1)] [[code](https://github.com/eleafeit/data_fusion)]
 
 Feit, Feinberg and Lenk (2017) Bayesian Analysis in Leeflang, Wieringa, Bijmolt and Pauwels, *Advanced Methods for Modeling Markets* [[Springer](https://doi.org/10.1007/978-3-319-53469-5)]
 
