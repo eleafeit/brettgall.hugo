@@ -15,7 +15,7 @@ font = "default"
 description = "Elea McDonnell Feit, Assistant Professor of Marketing at Drexel University."
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
-sharing_image = "sharing_img.jpg"
+sharing_image = "avatar.jpg"
 
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
 twitter = "eleafeit"
@@ -52,7 +52,7 @@ time_format = "3:04 pm"
 # Enter contact details (optional). To hide a field, clear it to "".
 email = "eleafeit@gmail.com"
 phone = ""
-address = """Elea McDonnell Feit, Gerri C. LeBow Hall Rm. 828, 3201 Market Street, Philadelphia, PA 19104"""
+address = " Gerri C. LeBow Hall Room 828"
 
 # Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
 office_hours = ""
@@ -64,7 +64,8 @@ appointment_url = ""
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
   {icon = "twitter", icon_pack = "fab", name = "@eleafeit", link = "https://twitter.com/eleafeit"},
-  {icon = "linkedin", icon_pack = "fab", name = "LinkedIn", link = "https://www.linkedin.com/in/elea-mcdonnell-feit-1330547/"},
+  {icon = "github", icon_pack = "fab", name="GitHub", link = "https://github.com/eleafeit"},
+  {icon = "linkedin", icon_pack = "fab", name = "LinkedIn", link = "https://www.linkedin.com/in/elea-mcdonnell-feit-1330547/"}
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},

@@ -24,7 +24,7 @@ Feit, Extending the Generalized Multinomial Logit Model: Error Scale and Decisio
 [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1566068)]  
 
 ## Articles
-Feit and Berman (2019) Test & Roll: Profit-Maximizing Marketing Experiments, *Marketing Science* [[MKSC](https://doi.org/abs/10.1287/mksc.2019.1194)] [[arXiv](https://arxiv.org/abs/1811.00457)] [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3274875)]
+Feit and Berman (2019) Test & Roll: Profit-Maximizing Marketing Experiments, *Marketing Science* [[MKSC](https://doi.org/abs/10.1287/mksc.2019.1194)] [[arXiv](https://arxiv.org/abs/1811.00457)] [[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3274875)] [[replication files](https://eleafeit.github.io/ab_test/)]
 
 Han, Feit and Srinivasan (2019) Can Negative Buzz Increase Purchase Intent?, *Marketing Letters* [[MKLET](https://doi.org/10.1007/s11002-019-09501-y)]
 
@@ -45,7 +45,7 @@ Feit, Beltramo, and Feinberg (2010) Reality Check: Combining survey and market d
 Netzer, Olivier, et al. (2008) Beyond Conjoint Analysis: Advances in Preference Measurement, *Marketing Letters* [[MKLET](https://doi.org/10.1007/s11002-008-9046-1)]
 
 ## Chapters
-Feit and Bradlow (2019) Fusion Models in Fusion Models in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research*  [[Springer](https://doi.org/10.1007/978-3-319-05542-8_9-1)]
+Feit and Bradlow (2019) Fusion Models in Fusion Models in Homburg, Klarmann and Vomberg, *Handbook of Marketing Research*  [[Springer](https://doi.org/10.1007/978-3-319-05542-8_9-1)] [[code](https://github.com/eleafeit/data_fusion)]
 
 Feit, Feinberg and Lenk (2017) Bayesian Analysis in Leeflang, Wieringa, Bijmolt and Pauwels, *Advanced Methods for Modeling Markets* [[Springer](https://doi.org/10.1007/978-3-319-53469-5)]
 

@@ -6,9 +6,9 @@ type: "blank"
 
 ### Advanced A/B Testing
 After reviewing the basics of A/B test analysis, this tutorial covers heterogeneous treatment effects, uplift modeling, causal forests, pre-randomization blocking & matching, and post-stratification with example analysis in R.  
-[Slides & Code on GitHub](https://eleafeit.github.io/ab_test/)
+[tutorial page](https://eleafeit.github.io/ab_test/) [[github repo](https://eleafeit.github.io/ab_test/)]
 
-### Is my advertising working?
+### Is My Advertising Working?
 This tutorial explains the differences between holdout experiments, model-based attribution, and media-mix modeling. The tutorial is built around analyzing single (synthetic) data set in different ways with data manipulation and analysis in R.   
 [Slides & Code on GitHub](https://github.com/eleafeit/ad_response_tutorial)
 
