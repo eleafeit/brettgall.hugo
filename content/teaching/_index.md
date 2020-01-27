@@ -25,8 +25,8 @@ This tutorial explains how to use the [Stan](https://mc-stan.org/) platform to f
 Chris and I developed a complete set of slides for our book, [R for Marketing Research and Analtyics](http://r-marketing.r-forge.r-project.org/about.html). Slides and code are provides for each chapter and follow the book closely.  
 [[slides & code](http://r-marketing.r-forge.r-project.org/Instructor/slides-index.html)]
 
-### R for Reproducable Research
-This tutorial for doctoral students in business explains why you should develop a reproducable workflow for your research and provides an overview of how to use R to automate and document your analysis. If you attend a live tutorial, you get to see me do a live analysis of an A/B experiment on the growth of chicks (the baby bird). This data was  provided to me by [Sue McDonnell](https://www.vet.upenn.edu/people/faculty-clinician-search/SUEMCDONNELL) who taught me a lot about scientific workflow.  
+### R for Reproducible Research
+This tutorial for doctoral students in business explains why you should develop a reproducible workflow for your research and provides an overview of how to use R to automate and document your analysis. If you attend a live tutorial, you get to see me do a live analysis of an A/B experiment on the growth of chicks (the baby bird). This data was  provided to me by [Sue McDonnell](https://www.vet.upenn.edu/people/faculty-clinician-search/SUEMCDONNELL) who taught me a lot about scientific workflow.  
 [[slides & code on GitHub](https://github.com/eleafeit/RforResearch)]
 
 

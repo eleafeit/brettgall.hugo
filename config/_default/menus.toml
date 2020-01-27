@@ -11,7 +11,7 @@
 [[main]]
   name = "CV"
   url = "https://drive.google.com/file/d/0B0EzanlzLNsWRWQ4WjRRTHFoOFU/view?usp=sharing"
-  weight = 70
+  weight = 90
 
 [[main]]
   name = "Research"
@@ -28,12 +28,12 @@
 #  url = "rsrcs/"
 #  weight = 50
 
-#[[main]]
-#  name = "Posts"
-#  url = "post/"
-#  weight = 60
+[[main]]
+  name = "Posts"
+  url = "post/"
+  weight = 70
 
-#[[main]]
-#  name = "Contact"
-#  url = "contact/"
-#  weight = 80
+[[main]]
+  name = "Contact"
+  url = "#contact"
+  weight = 15

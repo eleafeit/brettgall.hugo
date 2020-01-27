@@ -1,0 +1,285 @@
+---
+title: "Identification of Multinomial Logit Models in Stan"
+author: "Elea McDonnell Feit"
+date: "2020-01-31"
+slug: MNL_identification_STAN
+tags:
+- Choice Modeling
+- Multinomial Logit
+- Stan
+- R
+- Bayes
+---
+
+
+
+<p>Multinomial logit models are a workhorse tool in marketing, economics, political science, etc. One easy and flexible way to estimate these models is in Stan. The reason I like Stan is that it allows you extend beyond the standard multinomial logit model to hierarchical models, dynamic models and all sorts of fun stuff. (If you are interested in hierarchical-Bayes, you should also check out the <a href="https://github.com/ksvanhorn/ART-Forum-2017-Stan-Tutorial">tutorial</a> that <a href="https://ksvanhorn.com/index.html">Kevin Van Horn</a> and I wrote.)</p>
+<p>However, for beginners, the learning curve can be a bit steep. I set many students to the task for fitting a basic multinomial logit model in Stan and they usually master the Stan syntax get the modeling running pretty quickly. But often the posterior draws and estimates they are getting from Stan don’t make sense.</p>
+<p>Almost always, the problem is that they have misspecified the intercepts in the model. You see, multinomial logit models are a bit quirkly in that <em>relative</em> differences in utility between alternatives are identified, but not absolute differences in utility. In practice, this means that if you observe choices from among <code>K</code> alternatives, then you can only estimate <code>K-1</code> intercept parameters.</p>
+<p>This series of examples illustrates what happens when you specify <code>K</code> intercept parameters. I then show you several different ways to specify <code>K-1</code> intercept parameters. Along the way, I hope to teach you something about how to test Stan code to see that it recovers the parameters of synthetic data (but see <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html">Michael Betancourt’s blog</a> for a much more through treatment) and how to diagnose identification problems.</p>
+<p>Before we get started, here are the packages and options I use:</p>
+<pre class="r"><code>library(rstan) 
+library(bayesplot) 
+library(gtools) # rdirchlet
+rstan_options(auto_write=TRUE) # writes a compiled Stan program to the disk to avoid recompiling
+options(mc.cores = parallel::detectCores()) # uses multiple cores for stan</code></pre>
+<div id="data-generation-for-multinomial-logit-model" class="section level2">
+<h2>Data generation for multinomial logit model</h2>
+<p>The data setup I’ll be working with is typical of many marketing problems where we observe a series of choices from a fixed set of alternatives (often brands of fast-moving consumer goods) and want to estimate intercepts for each of the alternatives (which we sometimes interpret as “Brand Equity”.</p>
+<p>I start every modeling project by writing a function to simulate data from the model. Here is a handy function for generating synthetic data from the multinomial logit.</p>
+<pre class="r"><code>generate_mnl_data &lt;- function(N=1000, K=2, J=3, beta=c(1, -2), alpha=c(1,0,-1)){
+  if(length(beta) != K) stop (&quot;incorrect number of parameters&quot;)
+  Y &lt;- rep(NA, N)
+  X &lt;- list(NULL) 
+  for (i in 1:N) {
+    X[[i]] &lt;- matrix(rnorm(J*K), ncol=K)
+    Y[i] &lt;- sample(x=J, size=1, prob=exp(alpha+X[[i]]%*%beta))
+  }
+  list(N=N, J=J, K=K, Y=Y, X=X, beta=beta, alpha=alpha)
+}
+d0 &lt;- generate_mnl_data()</code></pre>
+<p>This function creates data where the alternatives for each choice task are stored as a matrix. For instance in <code>d0</code>, there are <code>J=3</code> alternatives each with <code>K=2</code> attributes in every choice task. These matrices are stored together in a list of length <code>N</code> for the <code>N</code> choice observations. The attributes for the first observed choice are:</p>
+<pre class="r"><code>d0$X[[1]]</code></pre>
+<pre><code>##             [,1]      [,2]
+## [1,]  0.95298844 -1.748092
+## [2,] -1.34196209  1.422230
+## [3,] -0.02610931  0.339079</code></pre>
+<p>We also have a vector <code>Y</code> that indicates which alternative was chosen for each of the <code>N</code> choices. In the first choice, alternative 1 was chosen:</p>
+<pre class="r"><code>d0$Y[1]</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="basic-multinomial-logit-model-without-intercepts" class="section level2">
+<h2>Basic multinomial logit model without intercepts</h2>
+<p>We start by estimating a basic multinomial logit model without intercepts. The Stan code below specifies that model with uniform priors on the parameters.</p>
+<pre class="r"><code>m1 &lt;- 
+&quot;data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[K] beta;  // attribute effects 
+}
+
+model {
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(X[i]*beta);
+}&quot;</code></pre>
+<p>We can create some synthetic data using <code>generate_mnl_data()</code> and then pass it into the <code>stan()</code> function along with our model code <code>m1</code> to produce draws from the posterior:</p>
+<pre class="r"><code>d1 &lt;- generate_mnl_data(N=1000, beta=c(-1,1), alpha=c(0,0,0))
+p1 &lt;- stan(model_code=m1, data=d1, iter=1000, chains=2, seed=20030601)</code></pre>
+<p>From the Stan output above, we can see that this code is very fast (&lt;3 sec / 1000 interaations for N=1000) and does not produce any warnings. We can make a traceplot of the draws for <code>beta</code> to see that Stan’s HMC algorithm is performing well:</p>
+<pre class="r"><code>mcmc_trace(As.mcmc.list(p1, pars=&quot;beta&quot;))</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>We can also see that the the “true” beta parameters are well within the posterior range, suggesting that the code is working. (There are more through tests we could do, but we’ll skip those for now. (Again, see <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html">Betancourt’s blog</a> for more detail.)</p>
+<pre class="r"><code>mcmc_recover_hist(As.mcmc.list(p1, pars=&quot;beta&quot;), true=d1$beta)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="the-bad-way-to-do-mnl-with-intercepts" class="section level2">
+<h2>The bad way to do MNL with intercepts</h2>
+<p>The model we estimated above does not include intercepts. In a logit model for data like this, we might want to specify an intercept for each alternative, indicating how much each alternative is preferred. These are sometimes called “alternative specific constants.” I’m going to start be naively specifying a vector <code>alpha</code>, which contains the three intercepts for the three alternatives. Like any other intercepts, I add them to the linear preditor: <code>alpha + X[i]*beta</code>. (If you are having trouble with the matrix algebra, remember <code>alpha</code> is 3 x 1, <code>X</code> is 3 x 2 and <code>beta</code> is 2 x 1. The resulting linear predictor is 3 x 1, i.e. a utility for each alternative.)</p>
+<pre class="r"><code>m2 &lt;- &quot;
+data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[J] alpha; // unconstrained intercepts
+    vector[K] beta;
+}
+
+model {
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(alpha + X[i]*beta);
+}&quot;</code></pre>
+<p>Then we can generate data and run the model:</p>
+<pre class="r"><code>d2 &lt;- generate_mnl_data(N=1000, beta=c(1,-1), alpha=c(1, 0, -2))
+p2 &lt;- stan(model_code = m2, data=d2, iter=1000, chains=2, seed=19980103)</code></pre>
+<pre><code>## Warning: There were 744 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+## http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
+<pre><code>## Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
+<pre><code>## Warning: The largest R-hat is 1.61, indicating chains have not mixed.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#r-hat</code></pre>
+<pre><code>## Warning: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#bulk-ess</code></pre>
+<pre><code>## Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
+<p>Uh-oh. This looks bad! The code runs very slowly runs slowly (~10 min / 1000 draws for <code>N=1000</code>) with lots of warnings from Stan about how the HMC sampler is performing. The traeplots below show that the values of the intercepts in <code>alpha</code> don’t coverge; they just wander around to any value. The <code>beta</code>s seem to converge, but are mixing poorly. What’s going on here?</p>
+<pre class="r"><code>mcmc_trace(As.mcmc.list(p2, pars=c(&quot;alpha&quot;, &quot;beta&quot;)))</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The problem is that we can add any value to all three intercepts in <code>alpha</code> and the conditional logit likelihood will be the same. This means that <code>alpha</code> is not identified.</p>
+</div>
+<div id="mnl-with-prior-on-intercepts" class="section level2">
+<h2>MNL with prior on intercepts</h2>
+<p>We are Bayesian, so one way to solve this identification problem is to put informative priors to identify intercepts. Here I specify a fairly tight normal prior for <code>alpha</code> which will keep all three values of <code>alpha</code> fairly close to zero. (Actually, since we didn’t specify a prior in the models above, they all have an implicit uniform prior on <code>alpha</code> and <code>beta</code>. This is a really bad prior, but it didn’t matter because the <em>data</em> identified the parameters.)</p>
+<pre class="r"><code>m3 &lt;- &quot;
+data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[J] alpha; 
+    vector[K] beta;
+}
+
+model {
+  alpha ~ normal(0,1); // prior contrains alpha
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(alpha + X[i]*beta);
+}&quot;</code></pre>
+<p>And now when I run the model, things go much more smoothly.</p>
+<pre class="r"><code>p3 &lt;- stan(model_code = m3, data=d2, iter=1000, chains=2, seed=19730715)</code></pre>
+<p>This runs faster (~30s / 1000 iterations) without producting errors and we can see from traceplots that that the values of <code>alpha</code> are now converging and the <code>beta</code> parameters are mixing nicely:</p>
+<pre class="r"><code>mcmc_trace(As.mcmc.list(p3, pars=c(&quot;alpha&quot;, &quot;beta&quot;)))</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>And now it looks like the true values we used to generate the data fall within the estimated posteriors.</p>
+<pre class="r"><code>mcmc_recover_hist(As.mcmc.list(p3, pars=c(&quot;alpha&quot;, &quot;beta&quot;)), true=c(d2$alpha, d2$beta))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Hurray for priors!</p>
+<p>Well, sort-of. This solution works with this data, but you may have to adjust the priors on <code>alpha</code> depending on your data. That would be a hassle and it generally is better practice to fit models that are fully-identified only by the model and the data.</p>
+</div>
+<div id="mnl-with-fix-one-to-zero-constraint" class="section level2">
+<h2>MNL with fix-one-to-zero constraint</h2>
+<p>Instead of using priors to constrain the intercepts, a more common identification strategy is to fix one of the intercepts in <code>alpha</code> to zero. (This also works if you are using other estimation procedures like maximum likelihood.) This is accomplished in Stan creating a vector of length <code>J-1</code> which we will call <code>alpha_raw</code> and then appending a zero to it in the <code>transformed parameters</code> block.</p>
+<pre class="r"><code>m4 &lt;- &quot;
+data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[J-1] alpha_raw; 
+    vector[K] beta;
+}
+
+transformed parameters {
+  vector[J] alpha; 
+  alpha = append_row(0, alpha_raw); 
+}
+
+model {
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(alpha + X[i]*beta);
+}&quot;</code></pre>
+<p>This is identified (with just the default uniform priors) and runs quite fast (~7s per 1000 iterations with N=1000).</p>
+<pre class="r"><code>p4 &lt;- stan(model_code = m4, data=d2, iter=1000, chains=2, seed=19730715)</code></pre>
+<p>The traceplots now look great even without specifying the priors: Note that all the values for <code>alpha[1]</code> are zero, because that’s how we defined <code>alpha</code> in the <code>tranformed parameters</code> block.</p>
+<pre class="r"><code>mcmc_trace(As.mcmc.list(p4, pars=c(&quot;alpha&quot;)))</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Now, one thing that may be bothring you is that the estimates for alpha are <em>not</em> the values we used to generate the data. The estimates are actually <em>differences</em> between the arbitrarily chosen intercept that was set to zero and the other intercepts. We can compute these differences and then compare them to the posteriors.</p>
+<pre class="r"><code>shifted_alpha &lt;- d2$alpha - d2$alpha[1]
+mcmc_recover_hist(As.mcmc.list(p4, pars=&quot;alpha&quot;), true=shifted_alpha)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Computation failed in `stat_bin()`:
+## `binwidth` must be positive</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>All looks good and it would be perfectly fine to use this sampler. In fact, this is the specification the <code>mlogit</code> package and in most of the commercial software for the multinomial logit. I see lots of papers in marketing and econ that use this specification.</p>
+<p>But it isn’t what I use in my own work. The tricky thing about setting one value of <code>alpha</code> to zero is that it is becomes harder to put priors on <code>alpha_raw</code>. Our specirfication defines <code>alpha_raw</code> as the <code>differences</code> in utility. To put priors on <code>alpha_raw</code>, you have to specify your beliefs about the <em>differences</em> between the alternatives. That can be very hard to do, especially when you are using hierarchical priors to account for heterogeneity in the intercepts across different decision makers. (It is especially bad, if you are trying to compute Bayesian d-optimal designs, as Kevin Van Horn and I once found out the hard way.)</p>
+</div>
+<div id="mnl-with-sum-to-zero-constraint-but-with-a-very-bad-stan-implementation" class="section level2">
+<h2>MNL with sum-to-zero constraint (but with a very bad Stan implementation)</h2>
+<p>Instead, I prefer to use a sum-to-zero constraint on <code>alpha</code>, which avoids making one of the alternatives <em>special</em>. The idea behind a sum-to-zero constraint is that we want to constrain <code>sum(alpha) = 1</code>. Here is one very bad way to implement it in Stan. It does recover the true values of the parameters, but because the parameter <code>alpha_raw</code> is unidentified, the HMC sampling is slow and generates lots of warnings.</p>
+<pre class="r"><code>m5 &lt;- &quot;
+data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[J] alpha_raw; // unconstrained UPC intercepts
+    vector[K] beta;
+}
+
+transformed parameters{
+  vector[J] alpha; 
+  alpha = alpha_raw - (1.0/J) * sum(alpha_raw); // sum to zero constraint
+}
+
+model {
+    // model
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(alpha + X[i]*beta);
+}&quot;
+p5 &lt;- stan(model_code = m5, data=d2, iter=1000, chains=2, seed=19730715)</code></pre>
+<pre><code>## Warning: There were 816 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+## http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
+<pre><code>## Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
+<pre><code>## Warning: The largest R-hat is 1.99, indicating chains have not mixed.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#r-hat</code></pre>
+<pre><code>## Warning: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#bulk-ess</code></pre>
+<pre><code>## Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+## Running the chains for more iterations may help. See
+## http://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
+<p>We are getting the true values of <code>alpha</code> back (after shifting them to account for the sum-to-zero constraint):</p>
+<p><code>r  shifted_alpha = d2$alpha - (1/d2$J)*sum(d2$alpha)  mcmc_recover_hist(As.mcmc.list(p5, pars=&quot;alpha&quot;), true=shifted_alpha)</code></p>
+<p><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></p>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>but these traceplots for <code>alpha_raw</code> look awful and it took a long time to get them! (For those of you who have build Gibbs samplers, it actually works very well to sample the unidentified <code>alpha_raw</code> in a Gibbs sampler, but for HMC, not so much.)</p>
+<pre class="r"><code>mcmc_trace(As.mcmc.list(p5, pars=c(&quot;alpha_raw&quot;, &quot;alpha&quot;)))</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="mnl-with-sum-to-zero-constraint-better-implementation" class="section level2">
+<h2>MNL with sum-to-zero constraint (better implementation)</h2>
+<p>Here is a better implementation of the sum-to-zero constraint. Let’s specify <code>alpha_raw</code> as a <code>J-1</code> vector. By putting this <code>J-1</code> parameter in the <code>parameters</code> block, we are telling Stan to focus on estimating the <code>J-1</code> identified parameter in <code>alpha_raw</code>. Then we will create an <code>J</code> vector <code>alpha</code> in the transformed parameters, but instead of putting in 0 for the left-out parameter in <code>alpha</code>, we will use <code>-sum(alpha_raw)</code>. This results in an <code>alpha</code> that sums to zero, which we then use to compute the <code>categorical_logit</code> likelihood. This runs fast and smoothly.</p>
+<pre class="r"><code>m6 &lt;- &quot;
+data {
+    int&lt;lower=2&gt; J; // of alternatives/outcomes
+    int&lt;lower=1&gt; N; // of observations
+    int&lt;lower=1&gt; K; // of covariates
+    int&lt;lower=0,upper=J&gt; Y[N];
+    matrix[J,K] X[N];
+}
+
+parameters {
+    vector[J-1] alpha_raw; // unconstrained UPC intercepts
+    vector[K] beta;
+}
+
+transformed parameters{
+  vector[J] alpha; 
+  alpha = append_row(-sum(alpha_raw), alpha_raw); // sum to zero constraint
+}
+
+model {
+    for (i in 1:N)
+        Y[i] ~ categorical_logit(alpha + X[i]*beta);
+}&quot;
+p6 &lt;- stan(model_code = m6, data=d2, iter=1000, chains=2, seed=19730715)</code></pre>
+<p>And we can see the true parameters are recovered (after we shift them to account for the sum-to-zero constraint).</p>
+<pre class="r"><code>shifted_alpha = d2$alpha - (1/d2$J)*sum(d2$alpha)
+mcmc_recover_hist(As.mcmc.list(p6, pars=&quot;alpha&quot;), true=shifted_alpha)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/post/2020-01-31-MNL-identification-in-STAN_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Surprisingly, this specification does not treat the first alternative as special. Instead, the parameters of <code>alpha</code> are the difference in utility between the alternative and the average of all alternatives. (You can see that in how I defined <code>shifted_alpha</code> above.) So, when you specify a prior on the elements of <code>alpha</code>, you can think about how much of a difference you expect to see between any alternative and the average alternative; this works very well in hierarchical models.</p>
+<p>So, that’s how to identify intercepts in multinomial logit models. Along the way we learned that:</p>
+<ul>
+<li><p>Before using any estimation procedure on real data, you should run it on synthetic data (simulated from the same model) to make sure it is recovering the parameters correctly. Better yet, run it on many different synthetic data sets. (See <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html">Betancourt</a>.)</p></li>
+<li><p>A slow running Stan sampler with lots of errors is a sign that your model is poorly-specified and may have an indentification issue.</p></li>
+<li><p>Indentification can be achieved by specifying tighter priors or by applying constraints to the model.</p></li>
+</ul>
+<p>Before I go, I should mention that way we have modeled the intercepts (alpha) is exactly how we would model <em>any multivariate attribute</em> in a choice model. So, if you have an attribute with <code>K</code> levels, you will have <code>K-1</code> parameters for it and you can accomplish the identification using the strategy above. Or, you could use effects coding, which achieves the same sum-to-zero constraint by way of the coding of multivariate attributes in the X matrix.</p>
+</div>
